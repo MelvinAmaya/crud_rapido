@@ -6,33 +6,27 @@
 
 @section('content')
     <section class="content container-fluid">
-        <div class="row">
-            <div class="col-md-12">
-                <div class="card">
-                    <div class="card-header">
-                        <div class="float-left">
-                            <span class="card-title">{{ __('Show') }} Product</span>
-                        </div>
-                        <div class="float-right">
-                            <a class="btn btn-primary" href="{{ route('products.index') }}"> {{ __('Regresar') }}</a>
-                        </div>
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="card rounded shadow-sm">
+                    <div class="card-header text-center">
+                        <h3 class="mb-0">{{ __('Show') }} Product</h3>
                     </div>
 
                     <div class="card-body">
-                        
-                        <div class="form-group">
-                            <strong>Descripcion:</strong>
-                            {{ $product->descripcion }}
+                        <div class="form-group text-center" style="font-size: 18px;">
+                            <strong>Descripcion:</strong> {{ $product->descripcion }}
                         </div>
-                        <div class="form-group">
-                            <strong>Precio:</strong>
-                            {{ $product->price }}
+                        <div class="form-group text-center" style="font-size: 18px;">
+                            <strong>Precio:</strong> {{ $product->price }}
                         </div>
-                        <div class="form-group">
-                            <strong>Stock:</strong>
-                            {{ $product->stock }}
+                        <div class="form-group text-center" style="font-size: 18px;">
+                            <strong>Stock:</strong> {{ $product->stock }}
                         </div>
+                    </div>
 
+                    <div class="card-footer text-center">
+                        <a class="btn btn-primary" href="{{ route('products.index') }}">{{ __('Atras') }}</a>
                     </div>
                 </div>
             </div>

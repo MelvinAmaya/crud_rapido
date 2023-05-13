@@ -5,74 +5,69 @@
 @endsection
 
 @section('content')
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-sm-12">
-                <div class="card">
-                    <div class="card-header">
-                        <div style="display: flex; justify-content: space-between; align-items: center;">
-
-                            <span id="card_title">
-                                {{ __('Person') }}
-                            </span>
-
-                             <div class="float-right">
-                                <a href="{{ route('people.create') }}" class="btn btn-primary btn-sm float-right"  data-placement="left">
-                                  {{ __('Create New') }}
-                                </a>
-                                <a href="{{ url('/personHome') }}" class="btn btn-success  btn-sm float-right"  data-placement="left">
-                                    Regresar
-                                  </a>
-                              </div>
-                        </div>
-                    </div>
-                    @if ($message = Session::get('success'))
-                        <div class="alert alert-success">
-                            <p>{{ $message }}</p>
-                        </div>
-                    @endif
-
-                    <div class="card-body">
-                        <div class="table-responsive">
-                            <table class="table table-striped table-hover">
-                                <thead class="thead">
-                                    <tr>
-                                        <th>No</th>
-                                        
-										<th>Name</th>
-										<th>Lastname</th>
-										<th>Job</th>
-
-                                        <th></th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    @foreach ($people as $person)
-                                        <tr>
-                                            <td>{{ ++$i }}</td>
-                                            
-											<td>{{ $person->name }}</td>
-											<td>{{ $person->lastname }}</td>
-											<td>{{ $person->job }}</td>
-
-                                            <td>
-                                                <form action="{{ route('people.destroy',$person->id) }}" method="POST">
-                                                    <a class="btn btn-sm btn-primary " href="{{ route('people.show',$person->id) }}"><i class="fa fa-fw fa-eye"></i> {{ __('Show') }}</a>
-                                                    <a class="btn btn-sm btn-success" href="{{ route('people.edit',$person->id) }}"><i class="fa fa-fw fa-edit"></i> {{ __('Edit') }}</a>
-                                                    @csrf
-                                                    @method('DELETE')
-                                                    <button type="submit" class="btn btn-danger btn-sm"><i class="fa fa-fw fa-trash"></i> {{ __('Delete') }}</button>
-                                                </form>
-                                            </td>
-                                        </tr>
-                                    @endforeach
-                                </tbody>
-                            </table>
-                        </div>
+<div class="container">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="card">
+                <div class="card-header d-flex justify-content-between align-items-center">
+                    <h5 class="m-0">{{ __('Empleados') }}</h5>
+                    <div class="d-flex">
+                        <a href="{{ route('people.create') }}" class="btn btn-primary me-2">{{ __('Nuevo') }}</a>
+                        <a href="{{ url('/personHome') }}" class="btn btn-secondary">{{ __('Regresar') }}</a>
                     </div>
                 </div>
-                {!! $people->links() !!}
+                @if ($message = Session::get('success'))
+                    <div class="alert alert-success mb-0">
+                        {{ $message }}
+                    </div>
+                @endif
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th scope="col">#</th>
+                                    <th scope="col">{{ __('Nombre') }}</th>
+                                    <th scope="col">{{ __('Apellido') }}</th>
+                                    <th scope="col">{{ __('Trabajo') }}</th>
+                                    <th scope="col">{{ __('Actions') }}</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach ($people as $person)
+                                    <tr>
+                                        <th scope="row">{{ $loop->iteration }}</th>
+                                        <td>{{ $person->name }}</td>
+                                        <td>{{ $person->lastname }}</td>
+                                        <td>{{ $person->job }}</td>
+                                        <td>
+                                            <form action="{{ route('people.destroy', $person->id) }}" method="POST">
+                                                <div class="d-flex">
+                                                    <a class="btn btn-primary btn-sm me-2" href="{{ route('people.show', $person->id) }}">
+                                                        {{ __('Show') }}
+                                                    </a>
+                                                    <a class="btn btn-success btn-sm me-2" href="{{ route('people.edit', $person->id) }}">
+                                                        {{ __('Edit') }}
+                                                    </a>
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('{{ __('Are you sure you want to delete this item?') }}')">
+                                                        {{ __('Delete') }}
+                                                    </button>
+                                                </div>
+                                            </form>
+                                        </td>
+                                    </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="d-flex justify-content-center">
+                        {{ $people->links('pagination::bootstrap-5') }}
+                    </div>
+                </div>
             </div>
         </div>
     </div>
+</div>
 @endsection
