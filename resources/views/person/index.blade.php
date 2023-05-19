@@ -44,7 +44,7 @@
                                             <form action="{{ route('people.destroy', $person->id) }}" method="POST">
                                                 <div class="d-flex">
                                                     <a class="btn btn-primary btn-sm me-2" href="{{ route('people.show', $person->id) }}">
-                                                        {{ __('Show') }}
+                                                        {{ __('Ver') }}
                                                     </a>
                                                     <a class="btn btn-success btn-sm me-2" href="{{ route('people.edit', $person->id) }}">
                                                         {{ __('Edit') }}
@@ -52,7 +52,7 @@
                                                     @csrf
                                                     @method('DELETE')
                                                     <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('{{ __('Estas seguro de eliminar este item?') }}')">
-                                                        {{ __('Delete') }}
+                                                        {{ __('Borrar') }}
                                                     </button>
                                                 </div>
                                             </form>

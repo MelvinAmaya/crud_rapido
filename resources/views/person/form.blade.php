@@ -20,7 +20,7 @@
     </div>
     <br>
     <div class="box-footer mt20">
-        <button type="submit" class="btn btn-primary">{{ __('Submit') }}</button>
+        <button type="submit" class="btn btn-primary">{{ __('Enviar') }}</button>
         <a href="{{ route('people.index') }}" class="btn btn-danger"  data-placement="left">
             Cancelar
           </a>
